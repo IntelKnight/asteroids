@@ -2,6 +2,8 @@ import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 print (f"Starting Asteroids with pygame version: {pygame.version.ver}")
 print (f"Screen width: {SCREEN_WIDTH}")
@@ -18,13 +20,18 @@ def main():
     # we create some groups to avoid making the main loop too clutered
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
-    # we need to add the class to it's container (group) before we make an instance of it
+    # we need to add the classes to their containers (group) before we make an instance of em
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
    
     player1 = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+    AsteroidField1 = AsteroidField()
    
     while True:
         # this is just for the class
