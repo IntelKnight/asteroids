@@ -66,7 +66,7 @@ def main():
                 if shot.collide_with(asteroid):
                     log_event("asteroid_shot")
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
 
 
         # call this line last no matter what (it renders the screen)
